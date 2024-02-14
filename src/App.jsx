@@ -1,10 +1,13 @@
 import './App.css'
-import conf from './conf'
+import {Header, Navbar, Container} from './components'
 
 function App() {
   return (
     <>
-     <h1>Hello world , This is Writely!!</h1>
+    <Container>
+      <Header></Header>
+      <Navbar></Navbar>
+    </Container>
     </>
   )
 }
