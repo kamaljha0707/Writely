@@ -1,5 +1,5 @@
 import { Client, Account, ID } from "appwrite";
-import conf from "../conf"
+import conf from "../conf";
 
 export class AuthService {
  client = new Client();
@@ -17,6 +17,7 @@ export class AuthService {
        let userAccount = await this.account.create(ID.unique(), email, password, username);
       if(userAccount){
         //login method
+        return this.login({email, password})
       }else{
         return userAccount
       }

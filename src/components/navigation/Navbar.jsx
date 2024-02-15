@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsReceiptCutoff } from "react-icons/bs";
 import { VscDiffAdded } from "react-icons/vsc";
+import authService from "../../appwrite/auth";
+import { Container } from "../index";
 
 function Navbar() {
-  const authStatus = true;
+  const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate();
   const navItems = [
     {
@@ -29,7 +31,7 @@ function Navbar() {
     },
     {
       name: "Sign up",
-      slug: "/sign-up",
+      slug: "/signup",
       active: !authStatus,
     },
   ];
