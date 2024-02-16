@@ -11,7 +11,7 @@ function Header() {
     <p>Welcome to Writely, where users can seamlessly write, read, update, and delete their blogs while effortlessly incorporating striking featured images to enhance their storytelling. Writely provides the tools and support to craft compelling content that captivates audiences. Join our vibrant community of writers and readers today, and let your words shine with the power of visual storytelling. </p>
      <form action="" className='w-full mt-6 flex justify-between items-center gap-6'>
      <input type="text" className=' placeholder-gray-300 border py-2 px-4 outline-none w-full rounded-md 
-'          placeholder='Search Blog' />
+'          placeholder='Search blog by title' />
      <button className='bg-[#5678ff] flex flex-shrink-0 rounded-md text-white text-xl font-medium font-serif py-2 px-12'>Search</button>
      </form>
     </div> 

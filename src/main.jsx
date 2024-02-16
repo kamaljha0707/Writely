@@ -8,6 +8,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Signup from './pages/Signup.jsx'
 import Home from './pages/Home.jsx'
 import AllPosts from './pages/AllPosts.jsx'
+import Post from './pages/Post.jsx'
+import AddPost from './pages/AddPost.jsx'
 import { AuthLayout, Login } from './components/index.js'
 
 let router = createBrowserRouter([
@@ -20,7 +22,16 @@ let router = createBrowserRouter([
         path: "/posts",
         element: <Home/>
       },
+      
     ]
+  },
+  {
+    path: "/add-posts",
+    element:(
+      <AuthLayout authentication>
+        <AddPost/>
+      </AuthLayout>
+    )
   },
   {
     path: "/login",
@@ -37,6 +48,13 @@ let router = createBrowserRouter([
             <Signup />
        </AuthLayout>
     ),
+},
+{
+  path: "/post/:slug",
+  
+  element:(
+      <Post/>
+  ),
 },
 ])
 

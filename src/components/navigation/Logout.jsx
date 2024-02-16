@@ -8,14 +8,18 @@ import { FiLogIn } from "react-icons/fi";
 function Logout() {
     const dispatch = useDispatch()
     const logoutHandler = ()=>{
-        authService.logout().then(()=>{
+        authService.logout()
+        .then(()=>{
             dispatch(logout())
         })
     }
   return (
-    <button className='text-lg flex items-center gap-3 font-serif font-medium cursor-pointer'>
+    <>
+    <button className='text-lg flex items-center gap-3 font-serif font-medium cursor-pointer' onClick={logoutHandler}>
       <FiLogIn className="text-xl font-light text-[#5678ff]"/> Logout
       </button>
+    </>
+
   )
 }
 

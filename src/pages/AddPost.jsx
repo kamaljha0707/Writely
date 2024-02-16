@@ -1,9 +1,9 @@
 import React from 'react'
-import { PostForm as PostFormComponent } from '../components'
+import  {PostForm}  from '../components'
 
 function AddPost() {
   return (
-   <PostFormComponent/>
+   <PostForm/>
   )
 }
 

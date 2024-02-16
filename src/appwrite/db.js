@@ -12,6 +12,7 @@ export class DbService{
     .setProject(conf.projectId)
 
    this.databases = new Databases(this.client)
+   this.storage = new Storage(this.client)
    }
 
    async createPost({title, content, featuredImage, status, username, userId, date}){
@@ -82,17 +83,15 @@ export class DbService{
    
   // file upload methods
    async  uploadFile(file){
-    try {
-        return await this.storage.createFile(
-            conf.bucketId, 
-            ID.unique(), 
-            file
-            )
-    } catch (error) {
-    console.log("Error While uploading file::", error);  
-    return false
-
-    }
+      try {
+          return await this.storage.createFile(
+              conf.bucketId, 
+              ID.unique(), 
+              file
+              )
+      } catch (error) {
+       console.log("Error While Uploading File::", error.message) 
+      }
    }
    
    async deleteFile(fileId){
