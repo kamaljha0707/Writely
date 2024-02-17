@@ -11,20 +11,20 @@ import {GoArrowLeft} from 'react-icons/go'
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
-            slug: post?.$id || "",
+            slug: post?.slug || "",
             content: post?.content || "",
             status: post?.status || "Public",
         },
     });
     const navigate = useNavigate();
-    const userData = useSelector((state) => state.auth.userData);
+    const userData = useSelector(state => state.auth.userData);
+    console.log(userData);
 
      const submit = async (data) => {
-      try {
             if (post) {
                 const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
     
-                if (file) {
+                if (file ) {
                     appwriteService.deleteFile(post.featuredImage);
                 }
     
@@ -42,16 +42,14 @@ import {GoArrowLeft} from 'react-icons/go'
                 if (file) {
                     const fileId = file.$id;
                     data.featuredImage = fileId;
-                    const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                    const dbPost = await appwriteService.createPost({...data, userId: userData.$id });
     
                     if (dbPost) {
                         navigate(`/post/${dbPost.$id}`);
                     }
                 }
             }
-} catch (error) {
-    console.log('getting error while submit::', error.message)
-}
+
     };
 
     const slugTransform = useCallback((value) => {
