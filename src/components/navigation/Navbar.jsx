@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { BsReceiptCutoff } from "react-icons/bs";
 import { VscDiffAdded } from "react-icons/vsc";
 import authService from "../../appwrite/auth";
-import { Container } from "../index";
 
 function Navbar() {
   const authStatus = useSelector((state) => state.auth.status)
@@ -16,13 +15,13 @@ function Navbar() {
       name: "Posts",
       slug: "/posts",
       active: true,
-      icon: <BsReceiptCutoff className="text-xl font-light"/>
+      icon: <BsReceiptCutoff className="text-2xl font-light"/>
     },
     {
       name: "Add Posts",
       slug: "/add-posts",
       active: authStatus,
-      icon: <VscDiffAdded className="text-xl font-light"/>
+      icon: <VscDiffAdded className="text-2xl font-light"/>
     },
     {
       name: "Login",
@@ -36,14 +35,14 @@ function Navbar() {
     },
   ];
   return (
-    <nav className="bg-white rounded-lg w-auto my-6 flex justify-between  px-12 py-5 mx-64 min-h-16">
-      <ul className='flex gap-10'>
+    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-8 flex justify-between  md:w-auto  px-12 py-6  min-h-16">
+      <ul className='flex gap-11'>
             {navItems.map((item) => 
             item.active ? (
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className="text-lg font-serif flex items-center gap-3 font-medium cursor-pointer"
+                className="text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
                 > {item.icon} {item.name}</button>
               </li>
             ) : null

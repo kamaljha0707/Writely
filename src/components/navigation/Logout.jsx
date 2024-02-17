@@ -15,8 +15,8 @@ function Logout() {
     }
   return (
     <>
-    <button className='text-lg flex items-center gap-3 font-serif font-medium cursor-pointer' onClick={logoutHandler}>
-      <FiLogIn className="text-xl font-light text-[#5678ff]"/> Logout
+    <button className='text-lg text-[#373f45] flex items-center gap-3 font-serif font-semibold cursor-pointer' onClick={logoutHandler}>
+      <FiLogIn className="text-2xl font-light text-[#5678ff]"/> Logout
       </button>
     </>
 

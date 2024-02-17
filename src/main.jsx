@@ -51,7 +51,6 @@ let router = createBrowserRouter([
 },
 {
   path: "/post/:slug",
-  
   element:(
       <Post/>
   ),
