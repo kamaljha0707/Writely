@@ -35,14 +35,14 @@ function Navbar() {
     },
   ];
   return (
-    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-8 flex justify-between  md:w-auto  px-12 py-6  min-h-16">
+    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between  md:w-auto  px-12 py-6  min-h-16">
       <ul className='flex gap-11'>
             {navItems.map((item) => 
             item.active ? (
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className="text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
+                className=" md:text-base text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
                 > {item.icon} {item.name}</button>
               </li>
             ) : null

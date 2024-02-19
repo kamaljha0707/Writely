@@ -103,9 +103,9 @@ export class DbService{
     }
    }
 
-   async previewFile(fileId){
+  previewFile(fileId){
    try {
-     return await this.storage.previewFile(conf.bucketId, fileId )
+     return   this.storage.getFilePreview(conf.bucketId, fileId )
    } catch (error) {
     console.log("Error While previewing file::", error);  
    }

@@ -11,7 +11,7 @@ import {GoArrowLeft} from 'react-icons/go'
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
-            slug: post?.slug || "",
+            slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "Public",
         },
@@ -21,6 +21,7 @@ import {GoArrowLeft} from 'react-icons/go'
 
      const submit = async (data) => {
             if (post) {
+                console.log(post.featuredImage)
                 const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
     
                 if (file ) {
@@ -106,7 +107,7 @@ import {GoArrowLeft} from 'react-icons/go'
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.previewFile(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

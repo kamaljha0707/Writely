@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import appwriteService from "../appwrite/db";
-import {Container, Header, Navbar, Postcard} from '../components'
+import {Container, FeaturedPost, Header, Navbar, Postcard} from '../components'
 
 function Home() {
     const [posts, setPosts] = useState([])
+    let  reversePost = posts.slice(0,-1).reverse()
 
     useEffect(() => {
         appwriteService.getAllPost()
@@ -39,8 +40,9 @@ function Home() {
         <Container>
             <Header/>
             <Navbar/>
+            <FeaturedPost />
                 <div className='w-full md:w-auto   '>
-                    {posts.map((post) => (
+                    {reversePost.map((post) => (
                         <div key={post.$id} className=' border-t-2 border-gray-100 '>
                             <Postcard {...post} />
                         </div>
