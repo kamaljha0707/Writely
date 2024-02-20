@@ -14,14 +14,15 @@ function Navbar() {
     {
       name: "Posts",
       slug: "/posts",
+      class: " border-b-2  pb-5 border-[#5678ff]",
       active: true,
-      icon: <BsReceiptCutoff className="text-2xl font-light"/>
+      icon: <BsReceiptCutoff className="text-xl font-light"/>
     },
     {
       name: "Add Posts",
       slug: "/add-posts",
       active: authStatus,
-      icon: <VscDiffAdded className="text-2xl font-light"/>
+      icon: <VscDiffAdded className="text-xl font-light"/>
     },
     {
       name: "Login",
@@ -35,14 +36,14 @@ function Navbar() {
     },
   ];
   return (
-    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between  md:w-auto  px-12 py-6  min-h-16">
+    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between  md:w-auto  px-12 py-6 pb-0  min-h-16">
       <ul className='flex gap-11'>
             {navItems.map((item) => 
             item.active ? (
-              <li key={item.name}>
+              <li className={`${item.class}`} key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className=" md:text-base text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
+                className=" md:text-sm text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
                 > {item.icon} {item.name}</button>
               </li>
             ) : null
@@ -53,7 +54,7 @@ function Navbar() {
               </li>
             )}
           </ul>
-      <h1>user logged In</h1>
+      <h1>logged In</h1>
     </nav>
   );
 }

@@ -38,10 +38,10 @@ function formatDate(dateString) {
           <Link to={`/post/${posts.$id}`} className='border font-serif font-semibold p-3 px-2 mt-2 text-[#373f45] rounded-md hover:bg-gray-200 mr-5'>Read now</Link>
           <span> {formatDate(createdAt)} • 4 min read</span>
         </div>
-        <div className="post-img w-auto h-72">
+        <div className="post-img w-3/6 h-72 overflow-hidden rounded-lg">
             <Link to={`/post/${posts.$id}`}>
             <img src={appwriteService.previewFile(posts.featuredImage)}
-            className='rounded-lg h-full w-full ' />
+            className='rounded-lg h-full w-full transition ease-in-out delay-150 duration-300 hover:scale-110  ' />
             </Link>
         
         </div>
