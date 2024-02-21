@@ -74,14 +74,17 @@ function Navbar() {
           <div className="flex items-center">
            {/* logged in */}
            {authStatus ? (
+            <Link to={`/profile/${username}`}>
           <li className="flex items-center gap-3" title="go to profile">
             
             <FiUser className="text-3xl p-1 bg-gray-100 rounded-full  text-[#5678ff]"/>
-            <Link to={`/profile/${username}`}>
             <button className="capitalize text-lg ">{username} </button>
-            </Link>  
              </li>
-         ) : 'Guest logged in' }
+            </Link>  
+         ) :  <li className="flex items-center gap-3" title="Guest">
+           <FiUser className="text-3xl p-1 bg-gray-100 rounded-full  text-[#5678ff]"/>
+           <h1>Guest</h1>
+         </li>}
            </div>
           </ul>
          

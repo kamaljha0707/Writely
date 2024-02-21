@@ -28,10 +28,9 @@ function FeaturedPost() {
           <h2 className='text-3xl  hover:underline capitalize font-semibold my-5 mt-7 font-serif'>{posts.title}</h2>
           </Link>
           <p className=' text-base leading-7 capitalize mb-6 line-clamp-3 '>{parse(String(posts.content))}</p>
-          <Link to={`/post/${posts.$id}`} className='border font-serif font-semibold p-3 px-2 mt-2 text-[#373f45] rounded-md hover:bg-gray-200 mr-5'>Read now</Link>
-          <span>{posts.username}</span>
           <br />
-          <span> {formatDate(createdAt)} • 4 min read</span>
+          <Link to={`/post/${posts.$id}`} className='border font-serif font-semibold p-3 px-2 mt-2 text-[#373f45] rounded-md hover:bg-gray-200 mr-5'>Read now</Link>
+          <span> {formatDate(createdAt)} • 4 min read • {posts.username}</span>
         </div>
         <div className="post-img w-3/6 h-72 overflow-hidden rounded-lg">
             <Link to={`/post/${posts.$id}`}>

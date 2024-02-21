@@ -1,7 +1,7 @@
 import { Client, Databases, Query, Storage, ID } from "appwrite";
 import conf from "../conf.js";
 
-export class DbService{
+export class DbService{                
    client = new Client()
    databases;
    storage;
@@ -55,6 +55,17 @@ export class DbService{
          queries)
     } catch (error) {
      console.log("Error While fetching All Post::", error); 
+    }
+   }
+   async getUserPost(userId){
+    const queries = [Query.equal('userId' , userId)]
+    try {
+      return await this.databases.listDocuments(
+        conf.databaseId,
+         conf.collectionId, 
+         queries)
+    } catch (error) {
+     console.log("Error While fetching User All Post::", error); 
     }
    }
 

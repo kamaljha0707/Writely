@@ -5,18 +5,18 @@ import appwriteService from "../appwrite/db"
 function AllPosts() {
   const [posts, setPosts] = useState([]);
   useEffect(()=>{
-
+    appwriteService.getAllPost([])
+    .then((posts) => {
+      if(posts){
+        setPosts(posts.documents)
+      }
+    })
   }, [ ])
 
-  appwriteService.getAllPost([])
-  .then((posts) => {
-    if(posts){
-      setPosts(posts.documents)
-    }
-  })
+ 
   return (
    <div>
-      <div className='flex flex-wrap'></div>
+      <div className='flex  flex-wrap'></div>
       {posts.map((post)=> (
         <Postcard key={post.$id} post= {post}/>
       ))}

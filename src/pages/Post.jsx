@@ -8,6 +8,7 @@ import {GoArrowLeft} from 'react-icons/go'
 import { RiTwitterXLine } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
+import formatDate from "../appwrite/date";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -50,9 +51,9 @@ export default function Post() {
                   (A bloging app)
                 </span> */}
               </h1>
-              <h3 className="text-[#373f45c8] md:text-lg text-xl my-2 font-serif font-semibold">
+              {/* <h3 className="text-[#373f45c8] md:text-lg text-xl my-2 font-serif font-semibold">
                 by Kamal Jha
-              </h3>
+              </h3> */}
               <p className="md:my-6 md:mb-4 my-8 md:text-base border-b-2 pb-4 text-lg md:leading-7 leading-8">
                 Welcome to Writely, where users can seamlessly write, read,
                 update, and delete their blogs while effortlessly incorporating
@@ -67,7 +68,7 @@ export default function Post() {
           <div className="w-full bg-white py-8 px-14 rounded-lg">
             <div className="w-full mb-4">
               <h1 className="text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
-              <span className=" text-sm  font-serif">Publishd 4 day ago </span>
+              <span className=" text-sm  font-serif">{formatDate(post.$createdAt)} </span>
             </div>
               <hr />
             <div className="my-8 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>

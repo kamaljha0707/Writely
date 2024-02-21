@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import appwriteService from "../appwrite/db.js"
 import parse from "html-react-parser";
-import userService from '../appwrite/user.js';
 import formatDate from '../appwrite/date.js';
 
 function Postcard({$id, title, content, featuredImage, $createdAt, username}) {

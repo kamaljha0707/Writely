@@ -10,7 +10,7 @@ import Home from './pages/Home.jsx'
 import EditPost from './pages/EditPost.jsx'
 import Post from './pages/Post.jsx'
 import AddPost from './pages/AddPost.jsx'
-import { AuthLayout, Login, PostForm } from './components/index.js'
+import { AuthLayout, Login } from './components/index.js'
 import Profile from './pages/Profile.jsx'
 
 let router = createBrowserRouter([
