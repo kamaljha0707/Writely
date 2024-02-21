@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Logout } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsReceiptCutoff } from "react-icons/bs";
+import { FiUser } from "react-icons/fi";
 import { VscDiffAdded } from "react-icons/vsc";
 import authService from "../../appwrite/auth";
 
 function Navbar() {
-  const authStatus = useSelector((state) => state.auth.status)
+  const [username , setUsername] = useState('')
   const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status)
   const navItems = [
     {
       name: "Posts",
       slug: "/posts",
-      class: " border-b-2  pb-5 border-[#5678ff]",
+      class: " border-b-2  border-[#5678ff]",
       active: true,
       icon: <BsReceiptCutoff className="text-xl font-light"/>
     },
@@ -35,26 +37,54 @@ function Navbar() {
       active: !authStatus,
     },
   ];
+  useEffect(() => {
+    async function fetchUserData() {
+        try {
+            const userData = await authService.getCurrentUser();
+            const name = userData.name;
+            setUsername(name);
+        } catch (error) {
+            console.error("Error while fetching username:", error);
+        }
+    }
+
+    fetchUserData();
+}, [username]);
   return (
-    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between  md:w-auto  px-12 py-6 pb-0  min-h-16">
-      <ul className='flex gap-11'>
-            {navItems.map((item) => 
+    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between items-center   md:w-auto px-9 py-5    min-h-16">
+      <ul className='flex  justify-between w-full '>
+        <div className="flex items-center gap-11">
+        {navItems.map((item) => 
             item.active ? (
               <li className={`${item.class}`} key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className=" md:text-sm text-lg font-serif flex items-center gap-3 font-semibold cursor-pointer"
+                className=" md:text-sm text-lg  font-serif flex items-center gap-3 font-semibold cursor-pointer"
                 > {item.icon} {item.name}</button>
               </li>
             ) : null
             )}
+            {/* logout */}
             {authStatus && (
               <li>
                  <Logout />
               </li>
             )}
+        </div>
+          <div className="flex items-center">
+           {/* logged in */}
+           {authStatus ? (
+          <li className="flex items-center gap-3" title="go to profile">
+            
+            <FiUser className="text-3xl p-1 bg-gray-100 rounded-full  text-[#5678ff]"/>
+            <Link to={`/profile/${username}`}>
+            <button className="capitalize text-lg ">{username} </button>
+            </Link>  
+             </li>
+         ) : 'Guest logged in' }
+           </div>
           </ul>
-      <h1>logged In</h1>
+         
     </nav>
   );
 }

@@ -11,6 +11,7 @@ import EditPost from './pages/EditPost.jsx'
 import Post from './pages/Post.jsx'
 import AddPost from './pages/AddPost.jsx'
 import { AuthLayout, Login, PostForm } from './components/index.js'
+import Profile from './pages/Profile.jsx'
 
 let router = createBrowserRouter([
   
@@ -60,6 +61,14 @@ let router = createBrowserRouter([
   element: (
       <AuthLayout authentication>
           <EditPost />
+      </AuthLayout>
+  ),
+},
+{
+  path: "/profile/:user",
+  element: (
+      <AuthLayout authentication>
+         <Profile/>
       </AuthLayout>
   ),
 },

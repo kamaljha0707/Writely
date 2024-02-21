@@ -64,18 +64,18 @@ export default function Post() {
             </div>
           </header>
           </div>
-          <div className="w-full bg-white p-8 rounded-lg">
+          <div className="w-full bg-white py-8 px-14 rounded-lg">
             <div className="w-full mb-4">
-              <h1 className="text-5xl mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
+              <h1 className="text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
               <span className=" text-sm  font-serif">Publishd 4 day ago </span>
             </div>
               <hr />
-            <div className="my-8 font-serif min-h-24 ">{parse(post.content)}</div>
+            <div className="my-8 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>
             <div className="h-72 w-full flex justify-start  ">
             <img
               src={appwriteService.previewFile(post.featuredImage)}
               alt={post.title}
-              className="rounded-xl h-full  "
+              className="rounded-xl h-auto  "
             />
             </div>
             {isAuthor && (

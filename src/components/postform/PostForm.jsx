@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/db.js";
@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Container } from "../index.js";
 import { GoArrowLeft } from "react-icons/go";
+import userService from "../../appwrite/user.js";
 
 function PostForm({ post }) {
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -15,10 +16,29 @@ function PostForm({ post }) {
         slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "Public",
+        username: post?.username || ""
+        
+
       },
     });
-  const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userData);
+    const navigate = useNavigate();
+    const userData = useSelector((state) => state.auth.userData);
+
+   const [user, setUser] = useState("");
+   const [userId, setUserId] = useState(null)
+   
+
+   useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const user = await userService.getUserNameById(userId)
+        setUser(user);
+      } catch (error) {
+        console.error("Error while fetching user:", error);
+      }
+    }
+    fetchUserData();
+  }, [setUser]);
 
   const submit = async (data) => {
     if (post) {
@@ -47,7 +67,9 @@ function PostForm({ post }) {
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
+          username:user
         });
+        // setUserId(post.userId)
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -128,6 +150,7 @@ function PostForm({ post }) {
                 />
               </div>
             )}
+            <div>{user}</div>
             <Select
             className= 'my-4'
               options={["Public", "Private"]}

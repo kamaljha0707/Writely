@@ -15,7 +15,7 @@ export class DbService{
    this.storage = new Storage(this.client)
    }
 
-   async createPost({title, slug, content, featuredImage, status, userId}){
+   async createPost({title, slug, content, featuredImage, status, userId, username}){
     try {
          return await this.databases.createDocument(conf.databaseId, conf.collectionId,
              slug,
@@ -25,6 +25,7 @@ export class DbService{
                 featuredImage,
                 status,
                 userId,
+                username
              })
     } catch (error) {
         console.log("Error while Creating post ::", error);
