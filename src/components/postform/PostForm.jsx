@@ -150,7 +150,6 @@ function PostForm({ post }) {
                 />
               </div>
             )}
-            <div>{user}</div>
             <Select
             className= 'my-4'
               options={["Public", "Private"]}

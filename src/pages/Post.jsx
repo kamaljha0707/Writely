@@ -66,19 +66,23 @@ export default function Post() {
           </header>
           </div>
           <div className="w-full bg-white py-8 px-14 rounded-lg">
+          
             <div className="w-full mb-4">
               <h1 className="text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
-              <span className=" text-sm  font-serif">{formatDate(post.$createdAt)} </span>
+              <span className=" text-sm  font-serif"> {formatDate(post.$createdAt)} </span>
             </div>
               <hr />
-            <div className="my-8 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>
-            <div className="h-72 w-full flex justify-start  ">
+              <div className="relative my-8 h-72 w-full  justify-start  ">
             <img
               src={appwriteService.previewFile(post.featuredImage)}
               alt={post.title}
-              className="rounded-xl h-auto  "
+              className="rounded-xl  h-72  "
             />
+                <span className="absolute rounded-md text-sm text-white h-fit top-5 left-5 z-1 bg-[#5678ffae] p-3">Featured Image</span>
             </div>
+            <div className="my-8 mb-4 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>
+            <span className="flex justify-end text-xl text-[#6c6f71] "> ~ {post.username}</span>
+            
             {isAuthor && (
               <div className="flex justify-end gap-4">
                 <Link to={`/edit-post/${post.$id}`}>

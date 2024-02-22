@@ -24,7 +24,7 @@ function Postcard({$id, title, content, featuredImage, $createdAt, username}) {
          <p className='mt-8 text-base font-sans line-clamp-2 mb-8  w-full'>{parse(content)}</p>
         <span> {formatDate(createdAt)} • 4 min read</span>
         <br />
-        <span>{username !== null ? <h1>username : {username}</h1> : 'loading...'}</span>
+        <span>{username !== null ? <h1 className='font-sans capitalize'>Author • {username}</h1> : 'loading...'}</span>
         </div>
       
     </div>
