@@ -40,7 +40,7 @@ export default function Post() {
   return post ? (
       <div className="bg-[#f3f6f9] w-full md:px-24 md:py-16 xl:px-28 min-h-screen">
         <div className="flex gap-8 items-start">    
-       <Link to={'/'}><GoArrowLeft title='Home page' className='text-3xl mt-3 mr-3  '/></Link>
+       <Link to={'/'}><GoArrowLeft title='Home page' className='text-3xl hover:bg-gray-300 p-1 rounded-sm mt-3 mr-3  '/></Link>
           <div className="w-3/12">
           <header className=" rounded-lg  justify-between  items-start    min-h-60">
             <Logo className =''></Logo>
@@ -72,13 +72,12 @@ export default function Post() {
               <span className=" text-sm  font-serif"> {formatDate(post.$createdAt)} </span>
             </div>
               <hr />
-              <div className="relative my-8 h-72 w-full  justify-start  ">
+              <div className="  my-8 h-72 w-full  justify-start  ">
             <img
               src={appwriteService.previewFile(post.featuredImage)}
               alt={post.title}
-              className="rounded-xl  h-72  "
+              className="rounded-xl shadow-md h-72  "
             />
-                <span className="absolute rounded-md text-sm text-white h-fit top-5 left-5 z-1 bg-[#5678ffae] p-3">Featured Image</span>
             </div>
             <div className="my-8 mb-4 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>
             <span className="flex justify-end text-xl text-[#6c6f71] "> ~ {post.username}</span>

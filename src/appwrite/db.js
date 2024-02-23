@@ -47,7 +47,7 @@ export class DbService{
     }
    }
 
-   async getAllPost( queries = [Query.equal("status", "public")]){
+   async getAllPost( queries = [Query.equal("status", "public"), Query.orderDesc('$createdAt')]){
     try {
       return await this.databases.listDocuments(
         conf.databaseId,

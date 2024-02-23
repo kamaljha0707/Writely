@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import appwriteService from "../appwrite/db";
 import  parse  from 'html-react-parser';
 import formatDate from '../appwrite/date';
-import { FiUser } from "react-icons/fi";
 
 
 
@@ -14,7 +13,7 @@ function FeaturedPost() {
             appwriteService.getAllPost()
             .then((posts) => {
                 if (posts) {
-                    setPosts(posts.documents.slice().reverse()[0])
+                    setPosts(posts.documents[0])
                 }
             })
         }, [])
@@ -22,7 +21,7 @@ function FeaturedPost() {
    
 
   return (
-    <div className="bg-white text-[#373f45] rounded-lg w-full mb-6  flex gap-6 justify-between items-center  md:w-auto  px-8 py-6 min-h-72">
+    <div className="bg-white text-[#373f45]  rounded-lg w-full mb-6  flex gap-6 justify-between items-center  md:w-auto  px-8 py-6 min-h-72">
         <div className="content h-full w-4/6 flex flex-col gap-4  items-start  ">
           <span className='bg-[#DAE0EB] text-[#48639C] font-serif text-sm p-1 px-2 rounded-lg '>Featured Post</span>
           <Link to={`/post/${posts.$id}`} >
@@ -36,7 +35,7 @@ function FeaturedPost() {
           <span> {formatDate(createdAt)} • 4 min read </span>
           </div>
         </div>
-        <div className="post-img w-3/6 h-72 overflow-hidden rounded-lg">
+        <div className="post-img w-3/6 h-72 shadow-lg overflow-hidden rounded-lg">
             <Link to={`/post/${posts.$id}`}>
             <img src={appwriteService.previewFile(posts.featuredImage)}
             className='rounded-lg h-full w-full transition ease-in-out delay-150 duration-300 hover:scale-110  ' />

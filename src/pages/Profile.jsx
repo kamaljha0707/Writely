@@ -40,7 +40,7 @@ console.log(posts);
     <div className="bg-[#f3f6f9] w-full md:px-24 md:py-16 xl:px-28 min-h-screen">
       <div className="flex gap-8 items-start">
         <Link to={"/"}>
-          <GoArrowLeft title="Home page" className="text-3xl mt-3 mr-3  " />
+          <GoArrowLeft title="Home page" className="text-3xl hover:bg-gray-300 p-1 rounded-sm mt-3 mr-3  " />
         </Link>
         <div className="w-3/12">
           <header className=" rounded-lg  justify-between  items-start    min-h-60">
@@ -98,17 +98,17 @@ console.log(posts);
             <h1 className="text-4xl leading-snug capitalize  font-serif text-[#373f45] font-bold">
               All Posts
             </h1>
-            <div className="flex flex-wrap h-full  justify-start gap-8 items-start my-12">
+            <div className="flex flex-wrap h-full   justify-start gap-8 items-start my-12">
               
               {posts.length !== 0 ? (
                 posts.map((post) => (
                 <Link to={`/post/${post.$id}`}>
-                  <div className="flex flex-col overflow-hidden drop-shadow-sm  w-44 gap-4 rounded-md">
-                    <div className="h-40 overflow-hidden">
+                  <div className="flex flex-col  overflow-hidden drop-shadow-sm  w-44 gap-4 rounded-md">
+                    <div className="h-40 overflow-hidden ">
                     <img
                       src={appwriteService.previewFile(post.featuredImage)}
                       alt={post.title}
-                      className=" w-full h-40 transition ease-in-out delay-150 duration-300 hover:scale-110"/>
+                      className=" w-full h-40 transition shadow-md ease-in-out delay-150 duration-300 hover:scale-110"/>
                     </div>
                    
                     <div className=" w-full h-14 py-2  text-center line-clamp-3    ">

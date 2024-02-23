@@ -138,6 +138,7 @@ function PostForm({ post }) {
             <Input
               label="Featured Image :"
               type="file"
+              max-size="2000"
               accept="image/png, image/jpg, image/jpeg, image/gif"
               {...register("image", { required: !post })}
             />
