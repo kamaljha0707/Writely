@@ -28,13 +28,15 @@ function Signup() {
 
   }
   return (
-    <Container >
-      <div className=' flex w-full  justify-center items-start'>
-      <div ><Link to={'/'}><GoArrowLeft title='Home page' className='text-3xl mt-3  '/></Link> </div>
-      <div className='bg-white rounded-lg shadow-lg w-4/6 mx-24   px-12 py-10  min-h-60'>
+    <div className="min-h-screen px-6 bg-[#f3f6f9] py-10 flex flex-col sm:flex-row sm:items-center justify-center sm:w-full gap-5 sm:gap-16">
       
-        <h2 className="text-center text-4xl text-[#373f45] font-bold leading-tight font-serif ">Sign up to create account</h2>
-        <p className="mt-2 text-center text-base text-[#373f45c8]">
+      <div className="w-fit self-start my-16 sm:my-4 p-0.5 rounded-sm hover:bg-gray-200 sm:bg-[#f3f6f9] bg-gray-200">
+      <Link to={'/'}><GoArrowLeft title='Home page' className='text-3xl  '/></Link> 
+      </div>
+
+      <div className="bg-white rounded-sm py-10 px-10 sm:px-20  ">
+        <h2 className="text-center text-xl md:text-4xl text-[#373f45] font-bold leading-tight font-serif ">Sign up to create account</h2>
+        <p className="mt-2 text-center text-sm md:text-base text-[#373f45c8]">
             Already have an account?&nbsp;
             <Link
                 to="/login"
@@ -45,8 +47,8 @@ function Signup() {
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)} className='w-full  px-20 mt-6 p-8 justify-between items-center gap-6'>
-            <div className='space-y-5'>
+        <form onSubmit={handleSubmit(create)} className='flex my-10 justify-center w-full'>
+            <div className='space-y-5 w-full'>
                 <Input
                 label="Full Name: "
                 placeholder="Enter your full name"
@@ -79,11 +81,10 @@ function Signup() {
             </div>
         </form>
       </div>
-      </div>
      
 
 
-    </Container>
+    </div>
 
   )
 }

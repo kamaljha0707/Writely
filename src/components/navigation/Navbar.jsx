@@ -16,15 +16,14 @@ function Navbar() {
     {
       name: "Posts",
       slug: "/posts",
-      class: " border-b-2  border-[#5678ff]",
       active: true,
-      icon: <BsReceiptCutoff className="text-xl font-light"/>
+      icon: <BsReceiptCutoff className="text-xl font-light hidden md:block"/>
     },
     {
       name: "Add Posts",
       slug: "/add-posts",
       active: authStatus,
-      icon: <VscDiffAdded className="text-xl font-light"/>
+      icon: <VscDiffAdded className="text-xl font-light hidden md:block"/>
     },
     {
       name: "Login",
@@ -51,15 +50,15 @@ function Navbar() {
     fetchUserData();
 }, [username]);
   return (
-    <nav className="bg-white text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between items-center   md:w-auto px-9 py-5    min-h-16">
+    <nav className="bg-white  text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between items-center   md:w-auto md:px-9 px-5 py-5 min-h-16">
       <ul className='flex  justify-between w-full '>
-        <div className="flex items-center gap-11">
+        <div className="flex  items-center gap-6 md:gap-11">
         {navItems.map((item) => 
             item.active ? (
-              <li className={`${item.class}`} key={item.name}>
+              <li  key={item.name} className="text-md md:text-sm">
                 <button
                 onClick={() => navigate(item.slug)}
-                className=" md:text-sm text-lg  font-serif flex items-center gap-3 font-semibold cursor-pointer"
+                className=" font-serif flex  items-center md:gap-3  font-semibold cursor-pointer"
                 > {item.icon} {item.name}</button>
               </li>
             ) : null

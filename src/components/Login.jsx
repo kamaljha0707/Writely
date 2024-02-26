@@ -1,80 +1,90 @@
-import React, {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { login as authLogin } from '../store/features/authSlice.js'
-import { useDispatch } from 'react-redux'
-import authService from '../appwrite/auth'
-import {useForm} from "react-hook-form"
-import {Input, Button, Container} from './index'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login as authLogin } from "../store/features/authSlice.js";
+import { useDispatch } from "react-redux";
+import authService from "../appwrite/auth";
+import { useForm } from "react-hook-form";
+import { Input, Button, Container } from "./index";
 import { GoArrowLeft } from "react-icons/go";
+import { FcGoogle } from "react-icons/fc";
 
 function Login() {
-    let navigate = useNavigate()
-    let dispatch = useDispatch()
-    const { register, handleSubmit} = useForm()
-    let [error, setError] = useState('')
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState('')
 
-const login = async(data)=>{
-    setError('')
+
+ const login = async(data) => {
+  setError('')
     try {
         const session = await authService.login(data)
-        if(session){
+        if (session) {
             const userData = await authService.getCurrentUser()
             if(userData) dispatch(authLogin(userData));
-            navigate('/')
+            navigate("/")
         }
     } catch (error) {
-        setError(error.message)
+    setError(error.message)
     }
-
+  
 }
+
   return (
-    <Container>
-    <div className=' flex w-full  justify-center items-start'>
-      <div ><Link to={'/'}><GoArrowLeft title= 'Home page' className='text-3xl mt-3  '/></Link> </div>
-    <div className='bg-white rounded-lg shadow-lg w-4/6  px-12 py-10 mx-24 min-h-60'>
-        <h2 className="text-center text-4xl text-[#373f45] font-bold leading-tight font-serif">Log in to your account</h2>
-        <p className="mt-2 text-center text-base text-[#373f45c8]">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline underline-offset-2 text-[#5678ff]"
-                    >
-                        Sign Up
-                    </Link>
-        </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(login)} className='w-full  px-20 mt-6 p-8 justify-between items-center gap-6'>
-            <div className='space-y-5'>
-                <Input
+      <div className="min-h-screen px-6 bg-[#f3f6f9] py-10 flex flex-col sm:flex-row sm:items-center justify-center sm:w-full gap-5 sm:gap-16">
+        <div className="w-fit self-start my-16 p-0.5 rounded-sm hover:bg-gray-200 sm:bg-[#f3f6f9] bg-gray-200">
+          <Link to={"/"}>
+            <GoArrowLeft title="Home page" className="text-3xl   " />
+          </Link>{" "}
+        </div>
+        <div className=" bg-white rounded-sm py-10 px-10 sm:px-20 ">
+          <h2 className="text-center text-xl md:text-4xl text-[#373f45] font-bold leading-tight font-serif">
+            Log in to your account
+          </h2>
+          <p className="mt-2 text-center text-sm md:text-base text-[#373f45c8]">
+            Don&apos;t have any account?&nbsp;
+            <Link
+              to="/signup"
+              className="font-medium text-primary transition-all duration-200 hover:underline underline-offset-2 text-[#5678ff]"
+            >
+              Sign Up
+            </Link>
+          </p>
+          {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+          <form
+            onSubmit={handleSubmit(login)}
+            className="flex my-10 justify-center w-full"
+          >
+            <div className="space-y-5 w-full">
+              <Input
                 label="Email : "
                 type="email"
                 placeholder="Enter your email"
                 {...register("email", {
-                    required: true,
-                    validate: {
-                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                        "Email address must be a valid address",
-                    }
+                  required: true,
+                  validate: {
+                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                    "Email address must be a valid address",
+                },
                 })}
-                />
-                <Input
+              />
+              <Input
                 label="Password : "
                 type="password"
                 placeholder="Enter your password"
                 {...register("password", {
-                    required: true,
+                  required: true,
                 })}
-                />
-                <Button
-                type="submit"
-                >Sign in</Button>
+              />
+              <div className=" gap-5">
+                <Button type="submit">Sign in</Button>
+              </div>
             </div>
-        </form>
+          </form>
         </div>
-  </div>
-    </Container>
-        
-  )
+      </div>
+ 
+  );
 }
 
-export default Login
+export default Login;

@@ -100,18 +100,16 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <div className="bg-[#f3f6f9] w-full md:px-24 md:py-16 xl:px-28 min-h-screen">
-      <div className=" flex w-full  justify-center items-start">
-        <div>
+    <div className=" bg-[#f3f6f9] px-6 py-10 flex flex-col md:flex-row md:justify-between border border-red-400v gap-10 md:px-64  min-h-screen ">
+        <div className="">
           <Link to={"/"}>
-            <GoArrowLeft title="Home page" className="text-3xl mt-3  " />
+            <GoArrowLeft title="Home page" className="hover:bg-gray-200 bg-gray-200 sm:bg-[#f3f6f9]
+             rounded-sm p-0.5 text-3xl mt-3  " />
           </Link>{" "}
         </div>
-        <form
-          onSubmit={handleSubmit(submit)}
-          className="bg-white rounded-lg w-4/6 flex justify-between items-start   px-12 py-10 mx-24 min-h-60"
-        >
-          <div className="w-2/3 px-2">
+        <div className="">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row md:flex gap-12">
+          <div className="w-full md:w-4/5">
             <Input
               label="Title :"
               placeholder="Title"
@@ -119,7 +117,7 @@ function PostForm({ post }) {
             />
             <Input
               label="Slug :"
-              placeholder="Slug"
+              placeholder="No need to fill"
               {...register("slug", { required: true })}
               onInput={(e) => {
                 setValue("slug", slugTransform(e.currentTarget.value), {
@@ -134,7 +132,7 @@ function PostForm({ post }) {
               defaultValue={getValues("content")}
             />
           </div>
-          <div className="w-1/3 px-2">
+          <div className="w-full md:w-2/5">
             <Input
               label="Featured Image :"
               type="file"
@@ -160,8 +158,9 @@ function PostForm({ post }) {
             <Button type="submit">{post ? "Update" : "Submit"}</Button>
           </div>
         </form>
+        </div>
+
       </div>
-    </div>
   );
 }
 

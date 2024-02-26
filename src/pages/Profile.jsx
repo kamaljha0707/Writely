@@ -15,7 +15,6 @@ function Profile() {
   const [user, setUser] = useState("");
   const [posts, setPosts] = useState([]);
   const userId = user.$id;
-console.log(posts);
   useEffect(() => {
     appwriteService.getUserPost(userId).then((posts) => {
       if (posts) {
