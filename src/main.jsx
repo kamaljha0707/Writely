@@ -29,7 +29,7 @@ let router = createBrowserRouter([
   {
     path: "/add-posts",
     element:(
-      <AuthLayout authentication = {false}>
+      <AuthLayout authentication>
         <AddPost/>
       </AuthLayout>
     )

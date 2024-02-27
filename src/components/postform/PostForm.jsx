@@ -100,7 +100,7 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <div className=" bg-[#f3f6f9] px-6 py-10 flex flex-col md:flex-row md:justify-between border border-red-400v gap-10 md:px-64  min-h-screen ">
+    <div className=" bg-[#f3f6f9] px-6 py-10 flex flex-col md:flex-row md:justify-between border border-red-400v gap-10 lg:px-64  min-h-screen ">
         <div className="">
           <Link to={"/"}>
             <GoArrowLeft title="Home page" className="hover:bg-gray-200 bg-gray-200 sm:bg-[#f3f6f9]
@@ -132,7 +132,7 @@ function PostForm({ post }) {
               defaultValue={getValues("content")}
             />
           </div>
-          <div className="w-full md:w-2/5">
+          <div className="w-full lg:w-2/5">
             <Input
               label="Featured Image :"
               type="file"
@@ -141,7 +141,7 @@ function PostForm({ post }) {
               {...register("image", { required: !post })}
             />
             {post && (
-              <div className="w-64  my-6 ">
+              <div className="w-full md:w-64  my-6 ">
                 <img
                   src={appwriteService.previewFile(post.featuredImage)}
                   alt={post.title}

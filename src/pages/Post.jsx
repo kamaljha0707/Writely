@@ -38,45 +38,38 @@ export default function Post() {
   };
 
   return post ? (
-      <div className="bg-[#f3f6f9] w-full md:px-24 md:py-16 xl:px-28 min-h-screen">
-        <div className="flex gap-8 items-start">    
+      <div className="bg-[#f3f6f9] w-full px-4 lg:px-24 lg:py-16 xl:px-28 min-h-screen">
+        <div className="flex flex-col lg:flex-row  lg:gap-8  items-start">    
        <Link to={'/'}><GoArrowLeft title='Home page' className='text-3xl hover:bg-gray-300 p-1 rounded-sm mt-3 mr-3  '/></Link>
-          <div className="w-3/12">
-          <header className=" rounded-lg  justify-between  items-start    min-h-60">
+          <div className="w-full lg:w-3/12">
+          <header className="h-full w-full flex lg:block rounded-lg  justify-start items-center lg:min-h-60">
             <Logo className =''></Logo>
-            <div className=" my-4 mx-6">
-              <h1 className=" md:text-2xl text-4xl font-serif font-semibold text-[#373f45]">
+            <div className="sm:my-4 mx-6">
+              <h1 className="text-2xl font-serif font-semibold text-[#373f45]">
                 Writely{" "}
-                {/* <span className="md:text-lg text-2xl font-medium ">
-                  (A bloging app)
-                </span> */}
               </h1>
-              {/* <h3 className="text-[#373f45c8] md:text-lg text-xl my-2 font-serif font-semibold">
-                by Kamal Jha
-              </h3> */}
-              <p className="md:my-6 md:mb-4 my-8 md:text-base border-b-2 pb-4 text-lg md:leading-7 leading-8">
+              <p className="hidden lg:block md:my-6 md:mb-4 my-8 md:text-base border-b-2 pb-4 text-lg md:leading-7 leading-8">
                 Welcome to Writely, where users can seamlessly write, read,
                 update, and delete their blogs while effortlessly incorporating
                 striking featured images to enhance their storytelling.
               </p>
-              <span className="font-serif font-semibold gap-4 flex items-center">Share {<RiTwitterXLine className=" text-4xl rounded-full p-2 bg-gray-200"/>}
-              {<FaFacebook className=" text-4xl rounded-full p-2 bg-gray-200"/>} 
-              {<MdEmail className=" text-4xl rounded-full p-2 bg-gray-200"/>} </span>
+              <span  className=" font-serif font-semibold gap-4 flex items-center text-sm">Share {<RiTwitterXLine className=" text-3xl rounded-full p-2 bg-gray-200"/>}
+              {<FaFacebook className=" text-3xl rounded-full p-2 bg-gray-200"/>} 
+              {<MdEmail className=" text-3xl rounded-full p-2 bg-gray-200"/>} </span>
             </div>
           </header>
           </div>
           <div className="w-full bg-white py-8 px-14 rounded-lg">
-          
             <div className="w-full mb-4">
-              <h1 className="text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
+              <h1 className="text-4xl lg:text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
               <span className=" text-sm  font-serif"> {formatDate(post.$createdAt)} </span>
             </div>
               <hr />
-              <div className="  my-8 h-72 w-full  justify-start  ">
+              <div className="overflow-hidden rounded-xl w-full sm:w-72 md:w-96 max-h-64 my-8">
             <img
               src={appwriteService.previewFile(post.featuredImage)}
               alt={post.title}
-              className="rounded-xl shadow-md h-72  "
+              className="rounded-xl shadow-md h-full w-full "
             />
             </div>
             <div className="my-8 mb-4 py-5 min-h-24 text-lg leading-relaxed ">{parse(post.content)}</div>

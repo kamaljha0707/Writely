@@ -21,8 +21,8 @@ function FeaturedPost() {
    
 
   return (
-    <div className="bg-white text-[#373f45]  rounded-lg w-full mb-6  flex gap-6 justify-between items-center  md:w-auto  px-8 py-6 min-h-72">
-        <div className="content h-full w-4/6 flex flex-col gap-4  items-start  ">
+    <div className="bg-white text-[#373f45]  rounded-lg w-full mb-6  flex flex-col-reverse sm:flex-row gap-6 justify-between items-center   px-8 py-6 min-h-72">
+        <div className="content h-full w-full   sm:w-4/6 flex flex-col gap-4  items-start  ">
           <span className='bg-[#DAE0EB] text-[#48639C] font-serif text-sm p-1 px-2 rounded-lg '>Featured Post</span>
           <Link to={`/post/${posts.$id}`} >
           <h2 className='text-3xl  hover:underline  capitalize font-semibold  font-serif'>{posts.title}</h2>
@@ -35,10 +35,10 @@ function FeaturedPost() {
           <span> {formatDate(createdAt)} • 4 min read </span>
           </div>
         </div>
-        <div className="post-img w-3/6 h-72 shadow-lg overflow-hidden rounded-lg">
+        <div className="post-img w-full sm:w-72 border md:w-96 max-h-64  shadow-lg overflow-hidden rounded-lg">
             <Link to={`/post/${posts.$id}`}>
             <img src={appwriteService.previewFile(posts.featuredImage)}
-            className='rounded-lg h-full w-full transition ease-in-out delay-150 duration-300 hover:scale-110  ' />
+            className='rounded-lg h-full  w-full  transition ease-in-out delay-150 duration-300 hover:scale-110  ' />
             </Link>
         
         </div>
