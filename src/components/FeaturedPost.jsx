@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import appwriteService from "../appwrite/db";
 import  parse  from 'html-react-parser';
 import formatDate from '../appwrite/date';
+import profile from '../../public/card.jpg';
+
 
 
 
@@ -17,6 +19,18 @@ function FeaturedPost() {
                 }
             })
         }, [])
+
+        function calculateReadingTime(paragraph) {
+            const wordsPerMinute = 200;
+          
+            const totalWords = paragraph.split(/\s+/).length;
+          
+            const readingTimeMinutes = totalWords / wordsPerMinute;
+          
+            const readingTime = Math.ceil(readingTimeMinutes);
+          
+            return readingTime;
+          }
    
    
 
@@ -29,13 +43,13 @@ function FeaturedPost() {
           </Link>
           <p className=' text-base   capitalize  line-clamp-3 '>{parse(String(posts.content))}</p>
 
-          <span className='font-semibold text-[#373f45c8] text-md capitalize flex items-center justify-between'> Author • {posts.username}</span>
+          <span className='font-semibold text-[#373f45c8] text-md capitalize flex items-center justify-between'> <h1 className='flex justify-start gap-3 mt-2 items-center font-sans capitalize'><img src={profile} className='h-9 w-9' alt="" />  {posts.username}</h1></span>
           <div className='mt-2'>
           <Link to={`/post/${posts.$id}`} className='border font-serif font-semibold p-3 px-2  text-[#373f45] rounded-md hover:bg-gray-200 mr-5'>Read now</Link>
-          <span> {formatDate(createdAt)} • 4 min read </span>
+          <span> {formatDate(createdAt)} • {calculateReadingTime(`${posts.content}`)} min read </span>
           </div>
         </div>
-        <div className="post-img w-full sm:w-72 border md:w-96 max-h-64  shadow-lg overflow-hidden rounded-lg">
+        <div className="post-img w-full sm:w-72  md:w-96 max-h-64  shadow-lg overflow-hidden rounded-lg">
             <Link to={`/post/${posts.$id}`}>
             <img src={appwriteService.previewFile(posts.featuredImage)}
             className='rounded-lg h-full  w-full  transition ease-in-out delay-150 duration-300 hover:scale-110  ' />

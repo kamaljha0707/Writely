@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/db.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, unstable_useViewTransitionState, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Container } from "../index.js";
 import { GoArrowLeft } from "react-icons/go";
@@ -26,7 +26,8 @@ function PostForm({ post }) {
 
    const [user, setUser] = useState("");
    const [userId, setUserId] = useState(null)
-   
+   const [error, setError] = useState('')
+
 
    useEffect(() => {
     async function fetchUserData() {
@@ -41,41 +42,49 @@ function PostForm({ post }) {
   }, [setUser]);
 
   const submit = async (data) => {
-    if (post) {
-      const file = data.image[0]
-        ? await appwriteService.uploadFile(data.image[0])
-        : null;
-
-      if (file) {
-        appwriteService.deleteFile(post.featuredImage);
+    setError('')
+     try {
+      if (post) {
+         
+          const file = data.image[0]
+            ? await appwriteService.uploadFile(data.image[0])
+            : null;
+    
+          if (file) {
+            appwriteService.deleteFile(post.featuredImage);
+          }
+    
+          const dbPost = await appwriteService.updatePost(post.$id, {
+            ...data,
+            featuredImage: file ? file.$id : undefined,
+          });
+    
+          if (dbPost) {
+            navigate(`/post/${dbPost.$id}`);
+          }
+       
+      }else {
+       
+        const file = await appwriteService.uploadFile(data.image[0]);
+        
+        if (file) {
+           
+           const fileId = file.$id;
+           data.featuredImage = fileId;
+           const dbPost = await appwriteService.createPost({
+             ...data,
+             userId: userData.$id,
+             username:user
+           });
+           // setUserId(post.userId)
+           if (dbPost) {
+             navigate(`/post/${dbPost.$id}`);
+           }
+         }
       }
-
-      const dbPost = await appwriteService.updatePost(post.$id, {
-        ...data,
-        featuredImage: file ? file.$id : undefined,
-      });
-
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
-      }
-    } else {
-      const file = await appwriteService.uploadFile(data.image[0]);
-
-      if (file) {
-        const fileId = file.$id;
-        data.featuredImage = fileId;
-        const dbPost = await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
-          username:user
-        });
-        // setUserId(post.userId)
-
-        if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
-        }
-      }
-    }
+     } catch (error) {
+      setError(error.message)
+     }
   };
 
   const slugTransform = useCallback((value) => {
@@ -108,16 +117,19 @@ function PostForm({ post }) {
           </Link>{" "}
         </div>
         <div className="">
+        {error && <p className="text-red-600 my-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit(submit)} className="flex flex-col md:flex-row md:flex gap-12">
           <div className="w-full md:w-4/5">
             <Input
               label="Title :"
               placeholder="Title"
+              required
               {...register("title", { required: true })}
             />
             <Input
               label="Slug :"
               placeholder="No need to fill"
+              required
               {...register("slug", { required: true })}
               onInput={(e) => {
                 setValue("slug", slugTransform(e.currentTarget.value), {
@@ -137,6 +149,7 @@ function PostForm({ post }) {
               label="Featured Image :"
               type="file"
               max-size="2000"
+              
               accept="image/png, image/jpg, image/jpeg, image/gif"
               {...register("image", { required: !post })}
             />
@@ -155,7 +168,7 @@ function PostForm({ post }) {
               label="Status"
               {...register("status", { required: true })}
             />
-            <Button type="submit">{post ? "Update" : "Submit"}</Button>
+            <Button type="submit">{post ? "Update" : "Publish"}</Button>
           </div>
         </form>
         </div>

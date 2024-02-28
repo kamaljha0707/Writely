@@ -1,13 +1,16 @@
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, Avatars } from "appwrite";
 import conf from "../conf";
 
 export class AuthService {
   client = new Client();
   account;
+ avatars;
   constructor() {
     this.client.setEndpoint(conf.appwriteUrl).setProject(conf.projectId);
 
     this.account = new Account(this.client);
+    this.avatars = new Avatars(this.client);
+
   }
 
   async createAccount({ email, password, name }) {
@@ -16,7 +19,7 @@ export class AuthService {
         ID.unique(),
         email,
         password,
-        name
+        name,
       );
       if (userAccount) {
         //login method

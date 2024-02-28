@@ -29,6 +29,7 @@ export class DbService{
              })
     } catch (error) {
         console.log("Error while Creating post ::", error);
+         throw errorb
     }
    }
 

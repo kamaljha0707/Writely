@@ -12,8 +12,10 @@ export default function RTE({name, control, label, defaultValue =""}) {
     <Controller
     name={name || "content"}
     control={control}
+    
     render={({field: {onChange}}) => (
         <Editor
+        required 
         apiKey={conf.editorApiKey}
         initialValue={defaultValue}
         init={{

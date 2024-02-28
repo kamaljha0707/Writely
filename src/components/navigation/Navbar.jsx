@@ -7,6 +7,9 @@ import { BsReceiptCutoff } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { VscDiffAdded } from "react-icons/vsc";
 import authService from "../../appwrite/auth";
+import  profile from '../../../public/profile.jpg'
+import  card from '../../../public/card.jpg'
+
 
 function Navbar() {
   const [username , setUsername] = useState('')
@@ -76,12 +79,12 @@ function Navbar() {
             <Link to={`/profile/${username}`}>
           <li className="flex items-center gap-3" title="go to profile">
             
-            <FiUser className="text-3xl p-1 bg-gray-100 rounded-full  text-[#5678ff]"/>
-            <button className="capitalize text-lg ">{username} </button>
+            <img src={profile} className=" h-10 w-10   bg-gray-100 rounded-full"/>
+            <button className="capitalize text-lg hover:underline hidden sm:block ">{username} </button>
              </li>
             </Link>  
          ) :  <li className="flex items-center gap-3" title="Guest">
-           <FiUser className="text-3xl p-1 bg-gray-100 rounded-full  text-[#5678ff]"/>
+            <img src={card} className=" h-10 w-10   bg-gray-100 rounded-full  text-[#5678ff]"/>
            <h1>Guest</h1>
          </li>}
            </div>

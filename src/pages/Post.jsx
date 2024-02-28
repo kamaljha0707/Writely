@@ -37,6 +37,18 @@ export default function Post() {
     });
   };
 
+  function calculateReadingTime(paragraph) {
+    const wordsPerMinute = 200;
+  
+    const totalWords = paragraph.split(/\s+/).length;
+  
+    const readingTimeMinutes = totalWords / wordsPerMinute;
+  
+    const readingTime = Math.ceil(readingTimeMinutes);
+  
+    return readingTime;
+  }
+
   return post ? (
       <div className="bg-[#f3f6f9] w-full px-4 lg:px-24 lg:py-16 xl:px-28 min-h-screen">
         <div className="flex flex-col lg:flex-row  lg:gap-8  items-start">    
@@ -62,7 +74,7 @@ export default function Post() {
           <div className="w-full bg-white py-8 px-14 rounded-lg">
             <div className="w-full mb-4">
               <h1 className="text-4xl lg:text-5xl leading-snug mb-6 font-serif text-[#373f45] font-bold">{post.title}</h1>
-              <span className=" text-sm  font-serif"> {formatDate(post.$createdAt)} </span>
+              <span className=" text-sm  font-serif">Published {formatDate(post.$createdAt)}  •  {calculateReadingTime(`${post.content}`)}  min read  </span>
             </div>
               <hr />
               <div className="overflow-hidden rounded-xl w-full sm:w-72 md:w-96 max-h-64 my-8">

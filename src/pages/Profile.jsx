@@ -10,6 +10,8 @@ import { FaFacebook } from "react-icons/fa";
 import authService from "../appwrite/auth";
 import appwriteService from "../appwrite/db";
 import formatDate from "../appwrite/date";
+import  profileImg from '../../public/profile.jpg'
+
 
 function Profile() {
   const [user, setUser] = useState("");
@@ -63,12 +65,13 @@ function Profile() {
           </header>
         </div>
         <div className="w-full bg-white py-8 px-6 lg:px-14 rounded-lg">
-          <div className="flex justify-center lg:justify-start items-center gap-28  w-full mb-6">
-            <div className=" bg-blue-400 rounded-full xl:h-36 xl:w-52  hidden xl:block   ">
-            </div>
-
-            <div className="w-full mb-4">
-              <h1 className="text-2xl lg:text-4xl leading-snug capitalize  font-serif text-[#373f45] font-bold">
+          <div className="flex  justify-center h-32  lg:justify-start items-center gap-10 lg:gap-10  w-full mb-6">
+            {/* <div className=" border p-0 rounded-full w-full xl:h-36 xl:w-52  hidden xl:block   "> */}
+              <img src={profileImg} className="w-auto h-28 sm:h-32 cursor-pointer hover:opacity-75  " alt="" />
+            {/* </div> */}
+           
+            <div className="w-full">
+              <h1 className="text-2xl lg:text-3xl leading-snug capitalize  font-serif text-[#373f45] font-bold">
                 {user.name}{" "}
               </h1>
               <span className=" text-lg text-[#373f45c8] hover:underline   font-serif">
@@ -78,6 +81,8 @@ function Profile() {
               <span className=" text-md ">
               Joined : {formatDate(user.$createdAt)}
               </span>
+              <br />
+              {/* <button className="bg-gray-200 mt-4 hover:bg-gray-100 px-2 rounded-sm p-1 my-1">Edit Profile</button> */}
             </div>
           </div>
 

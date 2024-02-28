@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import { Query } from 'appwrite';
 import appwriteService from "../appwrite/db";
+import { IoMdClose } from "react-icons/io";
+import { useSelector } from 'react-redux';
 import {Container, FeaturedPost, Header, Navbar, Postcard} from '../components'
+
 
 function Home() {
     const [posts, setPosts] = useState([])
     const [limit, setLimit] = useState(5)
     const createdAt = ('')
-
     useEffect(() => {
         appwriteService.getAllPost([Query.limit(limit), Query.offset(0), Query.orderDesc(createdAt)])
         .then((posts) => {
@@ -19,7 +21,7 @@ function Home() {
         })
     }, [limit])
 
-  
+
     if (posts.length === 0) {
         return (
             <>
@@ -48,7 +50,7 @@ function Home() {
             <FeaturedPost />
                     {posts.length <= 1 ? null :<div className='w-full md:w-auto bg-white rounded-lg'>
                     {posts.slice(1).map((post) => (
-                        <div key={post.$id} className= 'border-t-2 border-gray-100 '>
+                        <div key={post.$id}>
                             <Postcard {...post} />
                         </div>
                     ))}
@@ -57,8 +59,13 @@ function Home() {
                     </div>) : null  }
                     
                 </div>}
-
-
+                {/* pop up */}
+                {/* <div className={`min-h-32   transition   flex flex-col items-center justify-center rounded-md  bg-black/5 w-96 absolute top-10 py-8 right-10`}>
+                   <IoMdClose className='text-xl absolute top-4 right-4 cursor-pointer'/>
+                    <h2 className='font-semibold text-lg'>User Logged Out</h2>
+                    <p>You'r Logged Out</p>
+                    <button className='mt-2 py-2 px-5 rounded-sm text-white bg-[#6886fd]'>Ok</button>
+                </div> */}
             </Container>
 
         </>
