@@ -53,7 +53,6 @@ function Navbar() {
 
     fetchUserData();
 }, [username]);
-console.log(authStatus);
   return (
     <nav className="bg-white  text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between items-center   md:w-auto md:px-9 px-5 py-5 min-h-16">
       <ul className='flex  justify-between w-full '>
