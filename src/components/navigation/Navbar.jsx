@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsReceiptCutoff } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
-import { VscDiffAdded } from "react-icons/vsc";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import authService from "../../appwrite/auth";
 import  profile from '../../../public/profile.jpg'
 import  card from '../../../public/card.jpg'
@@ -26,7 +26,8 @@ function Navbar() {
       name: "Add Posts",
       slug: "/add-posts",
       active: authStatus,
-      icon: <VscDiffAdded className="text-xl font-light hidden md:block"/>
+      // icon: <VscDiffAdded className="text-xl font-light hidden md:block"/>
+      icon: <MdOutlineAddPhotoAlternate className="text-xl font-light hidden md:block"/>
     },
     {
       name: "Login",
@@ -52,6 +53,7 @@ function Navbar() {
 
     fetchUserData();
 }, [username]);
+console.log(authStatus);
   return (
     <nav className="bg-white  text-[#373f45] rounded-lg w-full my-5 md:my-4 flex justify-between items-center   md:w-auto md:px-9 px-5 py-5 min-h-16">
       <ul className='flex  justify-between w-full '>

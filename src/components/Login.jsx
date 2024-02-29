@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { Input, Button, Container } from "./index";
 import { GoArrowLeft } from "react-icons/go";
 import { FcGoogle } from "react-icons/fc";
+import {GoogleAuth} from "./index";
+
 
 function Login() {
   let navigate = useNavigate();
@@ -78,6 +80,7 @@ function Login() {
               />
               <div className=" gap-5">
                 <Button type="submit">Sign in</Button>
+                <GoogleAuth/>
               </div>
             </div>
           </form>

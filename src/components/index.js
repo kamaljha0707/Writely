@@ -13,7 +13,8 @@ import PostForm from './postform/PostForm'
 import Postcard from "./Postcard"
 import AuthLayout from "./AuthLayout.jsx"
 import FeaturedPost from "./FeaturedPost.jsx";
+import GoogleAuth from "./GoogleAuth.jsx";
 
 
 
-export {Header, Navbar, AuthLayout, Container, Logo, FeaturedPost, Logout, Login, Input, Button, Signup, RTE, Select, PostForm, Postcard }
+export {Header, Navbar, AuthLayout, Container, Logo, FeaturedPost, GoogleAuth, Logout, Login, Input, Button, Signup, RTE, Select, PostForm, Postcard }

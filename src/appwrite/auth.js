@@ -33,6 +33,13 @@ export class AuthService {
     }
   }
 
+  async googleLogin(){
+    const session =  await this.account.createOAuth2Session(
+          'google',
+         'http://localhost:5173/', 'https://localhost:5173/login');
+         return session
+  }
+
   async login({ email, password }) {
     try {
       return await this.account.createEmailSession(email, password);
