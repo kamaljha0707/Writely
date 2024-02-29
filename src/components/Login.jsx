@@ -23,6 +23,7 @@ function Login() {
         const session = await authService.login(data)
         if (session) {
             const userData = await authService.getCurrentUser()
+            console.log(userData);
             if(userData) dispatch(authLogin(userData));
             navigate("/")
         }
@@ -80,7 +81,7 @@ function Login() {
               />
               <div className=" gap-5">
                 <Button type="submit">Sign in</Button>
-                <GoogleAuth/>
+                {/* <GoogleAuth/> */}
               </div>
             </div>
           </form>

@@ -1,15 +1,12 @@
-import { Client, Account, ID, Avatars } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 import conf from "../conf";
 
 export class AuthService {
   client = new Client();
   account;
- avatars;
   constructor() {
     this.client.setEndpoint(conf.appwriteUrl).setProject(conf.projectId);
-
-    this.account = new Account(this.client);
-    this.avatars = new Avatars(this.client);
+     this.account = new Account(this.client);
 
   }
 
@@ -33,12 +30,17 @@ export class AuthService {
     }
   }
 
-  async googleLogin(){
-    const session =  await this.account.createOAuth2Session(
-          'google',
-         'http://localhost:5173/', 'https://localhost:5173/login');
-         return session
+  async googleLogin(success, failure){
+      try {
+        const response = await this.account.createOAuth2Session('google',null,  success, failure)
+        return response
+      } catch (error) {
+      console.log("Error while google login::", error);
+        throw error
+      }
   }
+
+  
 
   async login({ email, password }) {
     try {

@@ -35,9 +35,8 @@ function Postcard({$id, title, content, featuredImage, $createdAt, username}) {
          <p className='my-6 text-base font-sans line-clamp-2  w-full'>{parse(content)}</p>
 
         
+        <span>{username !== null ? <h1 className='flex justify-start gap-4 my-2 items-center font-sans capitalize'><img src={profile} className='h-8 w-8' alt="" />  {username}</h1> : 'loading...'}</span>
         <span> {formatDate(createdAt)} • {calculateReadingTime(content)} min read</span>
-        <br />
-        <span>{username !== null ? <h1 className='flex justify-start gap-4 mt-2 items-center font-sans capitalize'><img src={profile} className='h-8 w-8' alt="" />  {username}</h1> : 'loading...'}</span>
         </div>
       
     </div>

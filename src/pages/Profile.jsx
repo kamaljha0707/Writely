@@ -5,8 +5,8 @@ import parse from "html-react-parser";
 import { Logo } from "../components";
 import { GoArrowLeft } from "react-icons/go";
 import { RiTwitterXLine } from "react-icons/ri";
-import { MdEmail } from "react-icons/md";
-import { FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 import authService from "../appwrite/auth";
 import appwriteService from "../appwrite/db";
 import formatDate from "../appwrite/date";
@@ -58,9 +58,17 @@ function Profile() {
                 update, and delete their blogs while effortlessly incorporating
                 striking featured images to enhance their storytelling.
               </p>
-              <span  className=" font-serif font-semibold gap-4 flex items-center text-sm">Share {<RiTwitterXLine className=" text-3xl rounded-full p-2 bg-gray-200"/>}
-              {<FaFacebook className=" text-3xl rounded-full p-2 bg-gray-200"/>} 
-              {<MdEmail className=" text-3xl rounded-full p-2 bg-gray-200"/>} </span>
+              <span  className=" font-serif font-semibold gap-4 flex items-center text-sm"> Share
+                <Link to='https://twitter.com/userkamaljha' title="Twitter" target="_blank">
+                {<RiTwitterXLine className=" cursor-pointer text-3xl  rounded-full p-2 hover:bg-gray-300 bg-gray-200"/>}
+                </Link>
+                <Link to='https://www.linkedin.com/in/kamal-jha-b55b78236/' title="Linkedin" target="_blank">
+              {<FaLinkedinIn  className=" cursor-pointer text-3xl rounded-full p-2 hover:bg-gray-300  bg-gray-200"/>} 
+               </Link>
+               <Link to='github.com/userkamaljha' title="Github" target="_blank">
+               {<FaGithub  className=" cursor-pointer text-3xl rounded-full p-2 bg-gray-200"/>}
+               </Link>
+               </span>
             </div>
           </header>
         </div>
