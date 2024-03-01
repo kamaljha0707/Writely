@@ -9,6 +9,7 @@ import { RiTwitterXLine } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
 import formatDate from "../appwrite/date";
+import {Footer} from "../components";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -60,14 +61,14 @@ export default function Post() {
               <h1 className="text-2xl font-serif font-semibold text-[#373f45]">
                 Writely{" "}
               </h1>
-              <p className="hidden lg:block md:my-6 md:mb-4 my-8 md:text-base border-b-2 pb-4 text-lg md:leading-7 leading-8">
+              <p className="hidden lg:block md:my-6 md:mb-4 my-8 md:text-base pb-4 text-lg md:leading-7 leading-8">
                 Welcome to Writely, where users can seamlessly write, read,
                 update, and delete their blogs while effortlessly incorporating
                 striking featured images to enhance their storytelling.
               </p>
-              <span  className=" font-serif font-semibold gap-4 flex items-center text-sm">Share {<RiTwitterXLine className=" text-3xl rounded-full p-2 bg-gray-200"/>}
+              {/* <span  className=" font-serif font-semibold gap-4 flex items-center text-sm">Share {<RiTwitterXLine className=" text-3xl rounded-full p-2 bg-gray-200"/>}
               {<FaFacebook className=" text-3xl rounded-full p-2 bg-gray-200"/>} 
-              {<MdEmail className=" text-3xl rounded-full p-2 bg-gray-200"/>} </span>
+              {<MdEmail className=" text-3xl rounded-full p-2 bg-gray-200"/>} </span> */}
             </div>
           </header>
           </div>
@@ -99,6 +100,8 @@ export default function Post() {
             )}
           </div>
         </div>
+        <Footer />
+
       </div>
   ) : null;
 }

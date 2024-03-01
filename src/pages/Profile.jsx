@@ -5,12 +5,13 @@ import parse from "html-react-parser";
 import { Logo } from "../components";
 import { GoArrowLeft } from "react-icons/go";
 import { RiTwitterXLine } from "react-icons/ri";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { AiFillLinkedin } from "react-icons/ai";
 import authService from "../appwrite/auth";
 import appwriteService from "../appwrite/db";
 import formatDate from "../appwrite/date";
 import  profileImg from '../../public/profile.jpg'
+
 
 
 function Profile() {
@@ -58,22 +59,16 @@ function Profile() {
                 update, and delete their blogs while effortlessly incorporating
                 striking featured images to enhance their storytelling.
               </p>
-              <span  className=" font-serif font-semibold gap-4 flex items-center text-sm"> Share
-                <Link to='https://twitter.com/userkamaljha' title="Twitter" target="_blank">
-                {<RiTwitterXLine className=" cursor-pointer text-3xl  rounded-full p-2 hover:bg-gray-300 bg-gray-200"/>}
-                </Link>
-                <Link to='https://www.linkedin.com/in/kamal-jha-b55b78236/' title="Linkedin" target="_blank">
-              {<FaLinkedinIn  className=" cursor-pointer text-3xl rounded-full p-2 hover:bg-gray-300  bg-gray-200"/>} 
-               </Link>
-               <Link to='github.com/userkamaljha' title="Github" target="_blank">
-               {<FaGithub  className=" cursor-pointer text-3xl rounded-full p-2 bg-gray-200"/>}
-               </Link>
+              <span  className=" font-serif font-semibold mt-4 gap-4 flex items-center text-sm"> Share
+              <Link to='https://twitter.com/userkamaljha' target='_blank'><RiTwitterXLine className='bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-4xl cursor-pointer'/></Link>
+            <Link to= 'https://www.linkedin.com/in/kamal-jha-b55b78236/' target='_blank'><AiFillLinkedin className='bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-4xl cursor-pointer'/></Link>
+            <Link to='mailto:kamaljha0707@gmail.com' target='_blank'><MdEmail className='bg-gray-200 hover:bg-gray-300 rounded-full p-2 text-4xl cursor-pointer'/></Link>
                </span>
             </div>
           </header>
         </div>
-        <div className="w-full bg-white py-8 px-6 lg:px-14 rounded-lg">
-          <div className="flex  justify-center h-32  lg:justify-start items-center gap-10 lg:gap-10  w-full mb-6">
+        <div className="w-full  bg-white py-8 px-6 lg:px-14 rounded-lg">
+          <div className="flex   justify-center h-32  lg:justify-start items-center gap-10 lg:gap-10  w-full mb-6">
             {/* <div className=" border p-0 rounded-full w-full xl:h-36 xl:w-52  hidden xl:block   "> */}
               <img src={profileImg} className="w-auto h-28 sm:h-32 cursor-pointer hover:opacity-75  " alt="" />
             {/* </div> */}
@@ -105,19 +100,19 @@ function Profile() {
               {posts.length !== 0 ? (
                 posts.map((post) => (
                 <Link to={`/post/${post.$id}`}>
-                  <div className="flex flex-col overflow-hidden drop-shadow-sm w-full md:w-44 gap-4 rounded-md">
-                    <div className="h-44 overflow-hidden ">
+                  <div className="flex flex-col shadow-md sm:border overflow-hidden drop-shadow-sm w-full md:w-48 gap-4 rounded-md">
+                    <div className="h-44  overflow-hidden ">
                     <img
                       src={appwriteService.previewFile(post.featuredImage)}
                       alt={post.title}
                       className=" w-full md:h-44 transition shadow-md ease-in-out delay-150 duration-300 hover:scale-110"/>
                     </div>
                    
-                    <div className=" w-full h-14 py-2  text-center line-clamp-3    ">
+                    <div className=" w-full h-14 py-2   text-center line-clamp-3    ">
                     <h1 className=" text-base capitalize  line-clamp-1 font-semibold ">{post.title}</h1>
                     <span className="text-sm">{post.status} • {formatDate(post.$createdAt)}</span>
                     </div>
-                    <span className="text-sm text-center ">Last updated • {formatDate(post.$updatedAt)}</span>
+                    <span className="text-sm px-1 text-center ">Last updated • {formatDate(post.$updatedAt)}</span>
                     <span className=" p-2 text-sm font-normal text-center bg-[#f6f6f7] hover:bg-[#e8e8ebf4] rounded-md w-full">Edit Post</span>
                     <hr className="md:hidden" />
                   </div>

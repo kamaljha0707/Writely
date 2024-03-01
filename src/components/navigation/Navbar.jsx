@@ -86,7 +86,7 @@ function Navbar() {
             </Link>  
          ) :  <li className="flex items-center gap-3" title="Guest">
             <img src={card} className=" h-10 w-10   bg-gray-100 rounded-full  text-[#5678ff]"/>
-           <h1>Guest</h1>
+           <h1 className="hidden sm:block">Guest</h1>
          </li>}
            </div>
           </ul>

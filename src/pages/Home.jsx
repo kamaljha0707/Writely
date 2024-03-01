@@ -3,7 +3,9 @@ import { Query } from 'appwrite';
 import appwriteService from "../appwrite/db";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from 'react-redux';
+import { BeatLoader } from 'react-spinners';
 import {Container, FeaturedPost, Header, Navbar, Postcard} from '../components'
+import {Footer} from '../components';
 
 
 function Home() {
@@ -32,7 +34,7 @@ function Home() {
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Loading...
+                                <BeatLoader color="#5678ff" />
                             </h1>
                         </div>
                     </div>
@@ -59,13 +61,7 @@ function Home() {
                     </div>) : null  }
                     
                 </div>}
-                {/* pop up */}
-                {/* <div className={`min-h-32   transition   flex flex-col items-center justify-center rounded-md  bg-black/5 w-96 absolute top-10 py-8 right-10`}>
-                   <IoMdClose className='text-xl absolute top-4 right-4 cursor-pointer'/>
-                    <h2 className='font-semibold text-lg'>User Logged Out</h2>
-                    <p>You'r Logged Out</p>
-                    <button className='mt-2 py-2 px-5 rounded-sm text-white bg-[#6886fd]'>Ok</button>
-                </div> */}
+                <Footer/>
             </Container>
 
         </>

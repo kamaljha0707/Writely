@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { BeatLoader } from "react-spinners"
 
 
 export default function Protected({children, authentication}) {
@@ -19,5 +20,5 @@ export default function Protected({children, authentication}) {
     },[authStatus, navigate, authentication ])
 
 
-  return loader ? <h1>Loading...</h1> : <>{children}</>
+  return loader ? <BeatLoader color="#5678ff" />: <>{children}</>
 }
