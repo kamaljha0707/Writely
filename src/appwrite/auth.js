@@ -44,6 +44,7 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
+      await this.account.deleteSessions();
       return await this.account.createEmailSession(email, password);
     } catch (error) {
       console.log("Error while login Account::", error);
