@@ -46,13 +46,7 @@ export class AuthService {
     try {
       // Delete the current active session
     await this.account.deleteSessions();
-    // Wait a moment to ensure the session deletion is fully processed
-    await new Promise(resolve => setTimeout(resolve, 1000));
-     // Delete the current active session
-    await this.account.deleteSessions();
-
-    // Wait a moment to ensure the session deletion is fully processed
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    
       return await this.account.createEmailSession(email, password);
     } catch (error) {
       console.log("Error while login Account::", error);
