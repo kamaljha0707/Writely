@@ -20,6 +20,7 @@ function Login() {
  const login = async(data) => {
   setError('')
     try {
+        await authService.logout();
         const session = await authService.login(data)
         if (session) {
             const userData = await authService.getCurrentUser()
